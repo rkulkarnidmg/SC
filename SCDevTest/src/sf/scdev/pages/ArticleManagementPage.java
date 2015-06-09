@@ -15,6 +15,7 @@ public class ArticleManagementPage extends Page{
 	public void clickNewButton(){
 		driver.findElement(By.id("ext-gen32")).click();
 		SCDelay.forTime(2);
+		System.out.println("test");
 	}
 	
 	public void clickCancelOnNewWindow(){
