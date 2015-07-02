@@ -48,13 +48,35 @@ public class LoginPage extends Page{
 		Assert.assertTrue(driver.findElement(By.id("username")).getAttribute("value").equals("rahul.kulkarni@mailnewspapers.co.uk.sc.scdev"));
 	}
 	
+	public void enterCCIUserId(){
+		//driver.findElement((PageConstants.text_LoginUserName)).sendKeys("rahul.kulkarni@mailnewspapers.co.uk.sc.scdev");
+		driver.findElement(PageConstants.text_LoginUserName).sendKeys("rahul.kulkarni@mailnewspapers.co.uk.admin.prodmirror");
+		Assert.assertTrue(driver.findElement(By.id("username")).getAttribute("value").equals("rahul.kulkarni@mailnewspapers.co.uk.admin.prodmirror"));
+	}
+	
 	public void enterPassword(){
+		//UsefulUtils.waitForPageUnitElementIsPresent(By.id("password"), 15000);
 		driver.findElement(By.id("password")).sendKeys("cake))007");
-		Assert.assertTrue(driver.findElement(By.id("password")).getAttribute("value").equals(""));
+		Assert.assertTrue(driver.findElement(By.id("password")).getAttribute("value").equals("cake))007"));
 	}
 	
 	
 	public MainPage loginTest(){
+		loadPage();
+		//enterUserId();
+		enterCCIUserId();
+		enterPassword();
+		Assert.assertTrue(driver.findElement(By.id("Login")).isDisplayed());
+		
+		System.out.println("Color of Login button is = "
+				+ driver.findElement(By.id("Login")).getCssValue("color"));
+		
+		driver.findElement(By.id("Login")).click();
+		System.out.println("clicked on Login");
+		return new MainPage(driver);
+	}
+	
+	public MainPage loginCCITest(){
 		loadPage();
 		enterUserId();
 		enterPassword();
@@ -67,7 +89,6 @@ public class LoginPage extends Page{
 		System.out.println("clicked on Login");
 		return new MainPage(driver);
 	}
-	
 	
 
 }

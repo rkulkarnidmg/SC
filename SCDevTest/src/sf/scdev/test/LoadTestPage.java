@@ -3,6 +3,7 @@ package sf.scdev.test;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -10,6 +11,7 @@ import sf.scdev.pages.ArticleManagementPage;
 import sf.scdev.pages.KnowledgePage;
 import sf.scdev.pages.LoginPage;
 import sf.scdev.pages.MainPage;
+import sf.scdev.pages.SetupPage;
 
 public class LoadTestPage {
 	
@@ -18,7 +20,7 @@ public class LoadTestPage {
 	MainPage mPage;
 	
 	@Before public void setUp(){lPage = new LoginPage(driver);}
-	@After public void tearDown(){driver.quit();}
+	//@After public void tearDown(){driver.quit();}
 	
 	/*@Test
 	public void goToDraft(){
@@ -29,7 +31,7 @@ public class LoadTestPage {
 		
 		//kPage.textbox_SeachKnowledge("Cancel Subscription");
 	//	kPage.clickEnter_SearchKnowledge();
-		
+		 
 		
 		
 		
@@ -63,14 +65,33 @@ public class LoadTestPage {
 	}*/
 	
 	
-	@Test
+/*	@Test
 	public void searchArticleScoreRating(){
 		mPage = lPage.loginTest();
 		System.out.println("Completed Login");
 		KnowledgePage kPage = mPage.clickKnowledge();
 		kPage.clickPublished();
 		kPage.searchArticle("Holiday Policy");
-	}
+	}*/
 	
+	
+	@Test
+	public void searchCCILog(){
+		mPage = lPage.loginTest();
+		SetupPage setP = mPage.clickSetup();
+		setP.clickLog();
+		System.out.println("Clicked Log");
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		setP.clickDebugLog();
+		if (!setP.findRecords()){
+			setP.clickNew();
+		}
+		
+	}
 	
 }

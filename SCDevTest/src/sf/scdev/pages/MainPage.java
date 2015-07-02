@@ -20,6 +20,7 @@ public class MainPage extends Page {
 	public String link_Knowledge = "Knowledge";
 	public String link_ArticleManagement = "Article Management";
 	public String mainLink = "https://cs7.salesforce.com/home/home.jsp";
+	public String link_Setup = "Setup";
 	
 	public KnowledgePage clickKnowledge(){
 		SCDelay.forTime(4);
@@ -35,5 +36,14 @@ public class MainPage extends Page {
 		return new ArticleManagementPage(driver);
 	}
 
+	public SetupPage clickSetup(){
+		SCDelay.forTime(4);
+		driver.findElement(By.linkText(link_Setup)).click();
+		SCDelay.forTime(3);
+		return new SetupPage(driver);
+		}
+	
+	
+	
 	
 }
